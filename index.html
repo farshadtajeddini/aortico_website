@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Aortico | Beyond Diameter — Patient-Specific Aortic Risk Research</title>
-<meta name="description" content="Aortico predicts patient-specific aortic dissection risk from routine imaging, grounded in real aortic tissue mechanics." />
+<meta name="description" content="Aortico is a research-stage platform combining cardiovascular MRI, biomechanics, and machine learning to study patient-specific aortic vulnerability." />
 </head>
 <body>
 <style>
@@ -135,6 +135,11 @@
   a{color:inherit;}
   .wrap{width:min(var(--maxw), calc(100% - 48px));margin:0 auto;}
   section{padding:150px 0;}
+  main>section{position:relative;isolation:isolate;overflow:hidden;}
+  main>section>.wrap{position:relative;z-index:2;}
+  .ambient-viz{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.72;}
+  .bg-tint .ambient-viz{opacity:.58;}.band-deep .ambient-viz{opacity:.82;}
+  @media (max-width:720px){.ambient-viz{opacity:.48;}}
   @media (max-width:900px){section{padding:100px 0;}}
   @media (max-width:720px){section{padding:76px 0;}}
   h1,h2,h3{font-family:var(--font-display);font-weight:400;margin:0;text-wrap:balance;color:var(--ink);}
@@ -243,6 +248,8 @@
   .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;}
   @media (max-width:960px){.hero-grid{grid-template-columns:1fr;gap:40px;}}
   .hero-actions{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap;}
+  .stage-note{display:flex;align-items:center;gap:9px;margin-top:18px;color:var(--ink-muted);font-family:var(--font-mono);font-size:.76rem;letter-spacing:.02em;}
+  .stage-note span{width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 5px var(--gold-tint);flex:none;}
   .hero h1{margin-top:16px;color:var(--deep-ink);}
   .br-lg{display:none;}
   @media (min-width:700px){.br-lg{display:inline;}}
@@ -323,6 +330,7 @@
   .stat-pair .stat-num{font-family:var(--font-display);font-weight:700;font-size:2.1rem;color:var(--teal);line-height:1;white-space:nowrap;}
   .stat-pair p{color:var(--ink-muted);font-size:.92rem;margin-top:6px;}
   .cite{font-family:var(--font-mono);font-size:.74rem;color:var(--ink-muted);opacity:.7;margin-top:8px;letter-spacing:.01em;}
+  .cite a{text-decoration-color:var(--teal);text-underline-offset:3px;}
 
   /* How it works */
   .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;position:relative;margin-top:44px;}
@@ -461,6 +469,7 @@
           <a href="#how-it-works" class="btn btn-primary">Explore the approach</a>
           <a href="#research" class="btn btn-ghost">View the research</a>
         </div>
+        <p class="stage-note"><span></span> Research-stage platform · Seeking clinical validation partners</p>
       </div>
 
       <div class="hero-card reveal">
@@ -494,22 +503,23 @@
           </div>
           <div class="timeline-point" style="left:2%;"></div>
           <div class="timeline-point end" style="left:98%;"></div>
-          <div class="timeline-tick" style="left:2%;">0 yr · Continue surveillance</div>
-          <div class="timeline-tick" style="left:98%;transform:translate(-98%,0);">10 yr · Exit for surgery</div>
+          <div class="timeline-tick" style="left:2%;">Serial imaging</div>
+          <div class="timeline-tick" style="left:98%;transform:translate(-98%,0);">Consider surgical repair</div>
         </div>
-        <div class="timeline-footnote">Surveillance continues until diameter crosses a cutoff — with no signal for what happens in between.</div>
+        <div class="timeline-footnote">Diameter remains central to care, but guidelines also consider growth rate, body size, genetics, family history, and multidisciplinary clinical judgment.</div>
       </div>
 
       <div class="stat-pair">
         <div class="card reveal">
-          <div class="stat-num">90%+</div>
-          <p>of aortic dissections occur below current surgical size thresholds — missed by diameter alone.</p>
+          <div class="stat-num">59%</div>
+          <p>of patients in an IRAD type A dissection cohort presented below 5.5 cm, showing why diameter alone is an incomplete signal.</p>
+          <div class="cite"><a href="https://pubmed.ncbi.nlm.nih.gov/17709637/" target="_blank" rel="noopener">Pape et al., Circulation 2007</a> · diameter measured after dissection</div>
         </div>
         <div class="card reveal">
-          <div class="stat-num">6.5–14.1%</div>
+          <div class="stat-num">5.0–5.5 cm</div>
           <div>
-            <p>annual rupture, dissection, or death risk as diameter crosses today's thresholds — a gradient, not a line.</p>
-            <div class="cite">Davies et al., Ann Thorac Surg 2002;73(1):17–27</div>
+            <p>guideline diameter range used for elective repair in selected sporadic root or ascending aortic aneurysms—alongside growth, body size, family history, and clinical context.</p>
+            <div class="cite"><a href="https://www.jacc.org/doi/10.1016/j.jacc.2022.08.004" target="_blank" rel="noopener">2022 ACC/AHA Aortic Disease Guideline</a></div>
           </div>
         </div>
       </div>
@@ -520,8 +530,8 @@
     <div class="wrap">
       <div class="section-head center">
         <span class="kicker">How it works</span>
-        <h2>From a routine scan to a patient-specific prediction.</h2>
-        <p class="body-copy">No new equipment. No new protocol. Just the imaging already being collected.</p>
+        <h2>One scan. Three signal layers. One interpretable index.</h2>
+        <p class="body-copy">Aortico turns cardiovascular MRI into a structured view of anatomy, motion, and flow for patient-specific research.</p>
       </div>
 
       <div class="steps">
@@ -530,8 +540,8 @@
           <div class="step-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 17h7M17.5 14v7"/></svg>
           </div>
-          <h3>Routine MRI</h3>
-          <p>3D anatomy, reconstructed from the scan already ordered in standard aortic care.</p>
+          <h3>Anatomy</h3>
+          <p>Reconstruct the thoracic aorta and quantify its geometry across clinically relevant segments.</p>
         </div>
         <div class="step reveal">
           <div class="step-connector"></div>
@@ -539,8 +549,8 @@
           <div class="step-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h3l2-7 4 14 3-11 2 4h6"/></svg>
           </div>
-          <h3>Biomechanical modeling</h3>
-          <p>Strain and flow reveal how the wall behaves under load — not just how wide it is.</p>
+          <h3>Motion + flow</h3>
+          <p>Measure area change and blood-flow behavior across the cardiac cycle.</p>
         </div>
         <div class="step reveal">
           <div class="step-connector"></div>
@@ -548,8 +558,8 @@
           <div class="step-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="0.6" fill="currentColor"/></svg>
           </div>
-          <h3>Patient-specific BVI</h3>
-          <p>An 18-feature model returns one number: the Biomechanical Vulnerability Index.</p>
+          <h3>Vulnerability index</h3>
+          <p>Combine 18 imaging-derived features into the investigational Biomechanical Vulnerability Index.</p>
         </div>
       </div>
 
@@ -607,7 +617,7 @@
       <div class="section-head">
         <span class="kicker">Research</span>
         <h2>Ground truth from tissue, not assumption.</h2>
-        <p class="body-copy">Most risk models are trained on outcomes. Ours is trained on the mechanical property that causes them.</p>
+        <p class="body-copy">Aortico links imaging-derived markers to direct measurements of human aortic tissue mechanics—an investigational bridge between what can be scanned and what the wall can withstand.</p>
       </div>
 
       <div class="grid-3">
@@ -655,25 +665,25 @@
   <section class="band-deep">
     <div class="wrap">
       <div class="section-head">
-        <span class="kicker">The opportunity</span>
-        <h2>What individualized risk could change.</h2>
-        <p class="body-copy">Modeled impact, based on our current research — not yet observed in clinical deployment.</p>
+        <span class="kicker">The clinical question</span>
+        <h2>Could mechanics reveal what diameter misses?</h2>
+        <p class="body-copy">These are the outcomes Aortico is being developed to investigate with clinical partners.</p>
       </div>
       <div class="grid-3">
         <div class="impact-card reveal">
-          <div class="num">3×</div>
-          <span class="tag">Projected</span>
-          <p>more patients safely discharged from lifelong surveillance.</p>
+          <div class="num">01</div>
+          <span class="tag">Stratify</span>
+          <p>Identify which patients may warrant closer surveillance—and which may not.</p>
         </div>
         <div class="impact-card reveal">
-          <div class="num">50%</div>
-          <span class="tag">Projected</span>
-          <p>lower aortic clinic operating cost.</p>
+          <div class="num">02</div>
+          <span class="tag">Inform</span>
+          <p>Add a patient-specific biomechanical signal to multidisciplinary review.</p>
         </div>
         <div class="impact-card reveal">
-          <div class="num">20%</div>
-          <span class="tag">Projected</span>
-          <p>gain in decision-making accuracy.</p>
+          <div class="num">03</div>
+          <span class="tag">Measure</span>
+          <p>Create a quantitative endpoint for longitudinal and interventional studies.</p>
         </div>
       </div>
     </div>
@@ -763,11 +773,12 @@
       <div class="contact-info">
         <span class="kicker">Get in touch</span>
         <h2 style="margin-top:14px;">Let's talk.</h2>
-        <p class="body-copy">We're looking for imaging cohorts, pilot sites, and collaborators who know this problem well.</p>
+        <p class="body-copy">We're looking for clinical and research partners working to improve how thoracic aortic disease is studied and managed.</p>
         <ul class="contact-list">
           <li><b>Clinical</b> — imaging cohorts, retrospective review, pilot sites</li>
           <li><b>Research</b> — tissue mechanics, biomechanical modeling</li>
-          <li><b>Investment</b> — full deck available on request</li>
+          <li><b>Investment</b> — company and research deck available on request</li>
+          <li><b>Email</b> — <a href="mailto:contact@aortico.com">contact@aortico.com</a></li>
         </ul>
       </div>
 
@@ -798,7 +809,7 @@
         <button type="submit" class="btn btn-primary" style="align-self:flex-start;">Send message</button>
         <div class="form-success" id="formSuccess">
           <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="8"/><path d="M6.5 10.5l2.3 2.3L14 8"/></svg>
-          <span>Thanks — we'll be in touch shortly.</span>
+          <span>Your email app should open with this message ready to send.</span>
         </div>
       </form>
     </div>
@@ -1084,13 +1095,48 @@
     document.addEventListener('visibilitychange', function(){ if(document.hidden){stop();} else {start();} });
   })();
 
+  /* Ambient scientific scenes continue the hero's particle language through
+     the page: measurement rings, flow, networks, tissue fibers and pulse. */
+  (function(){
+    var list=[].slice.call(document.querySelectorAll('main>section:not(.hero)'));
+    if(!list.length||!window.IntersectionObserver)return;
+    var modes=['rings','flow','network','fibers','pulse','scan','network','flow'], scenes=[], live=[];
+    var still=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    list.forEach(function(section,n){
+      var cv=document.createElement('canvas'),c=cv.getContext('2d');if(!c)return;
+      cv.className='ambient-viz';cv.setAttribute('aria-hidden','true');section.insertBefore(cv,section.firstChild);
+      var s={el:section,cv:cv,c:c,n:n,mode:modes[n%modes.length],w:0,h:0,p:[]};scenes.push(s);
+      s.resize=function(){var r=section.getBoundingClientRect(),d=Math.min(devicePixelRatio||1,1.5);s.w=Math.max(1,r.width);s.h=Math.max(1,r.height);cv.width=s.w*d;cv.height=s.h*d;cv.style.width=s.w+'px';cv.style.height=s.h+'px';c.setTransform(d,0,0,d,0,0);s.p=[];for(var i=0;i<Math.min(78,Math.max(34,s.w/20));i++)s.p.push({x:Math.random()*s.w,y:Math.random()*s.h,a:Math.random()*6.28,v:.15+Math.random()*.35,r:.6+Math.random()*1.5});};s.resize();
+    });
+    var watcher=new IntersectionObserver(function(es){es.forEach(function(e){var s=scenes.filter(function(x){return x.el===e.target;})[0],i=live.indexOf(s);if(e.isIntersecting&&i<0)live.push(s);else if(!e.isIntersecting&&i>=0)live.splice(i,1);});},{rootMargin:'120px'});scenes.forEach(function(s){watcher.observe(s.el);});
+    window.addEventListener('resize',function(){scenes.forEach(function(s){s.resize();});});
+    function edge(c,a,b,o){c.strokeStyle='rgba(63,208,197,'+o+')';c.beginPath();c.moveTo(a.x,a.y);c.lineTo(b.x,b.y);c.stroke();}
+    function draw(s,t){var c=s.c,w=s.w,h=s.h,p=s.p,q=t*.00035;c.clearRect(0,0,w,h);c.lineWidth=1;var x0=w*(s.n%2?.88:.12),g=c.createRadialGradient(x0,h*.5,0,x0,h*.5,Math.min(w,h)*.65);g.addColorStop(0,'rgba(63,208,197,.12)');g.addColorStop(1,'rgba(63,208,197,0)');c.fillStyle=g;c.fillRect(0,0,w,h);
+      if(s.mode==='rings'||s.mode==='scan'){for(var j=1;j<9;j++){var rr=Math.min(w,h)*.06*j+Math.sin(q*3+j)*7;c.strokeStyle='rgba(63,208,197,'+(.08-j*.006)+')';c.beginPath();c.arc(x0,h*.5,rr,-1.15,1.15);c.stroke();}if(s.mode==='scan'){c.strokeStyle='rgba(232,178,74,.20)';c.beginPath();c.moveTo(x0,h*.5);c.lineTo(x0+Math.cos(q)*h*.45,h*.5+Math.sin(q)*h*.45);c.stroke();}}
+      if(s.mode==='flow'){p.forEach(function(a,k){a.x=(a.x+(still?0:a.v))%w;var y=a.y+Math.sin(a.x*.012+a.a+q*9)*18;c.fillStyle=k%11?'rgba(63,208,197,.21)':'rgba(232,178,74,.30)';c.beginPath();c.arc(a.x,y,a.r,0,6.28);c.fill();});}
+      if(s.mode==='network'){p.forEach(function(a){c.fillStyle='rgba(63,208,197,.20)';c.beginPath();c.arc(a.x+Math.sin(q*5+a.a)*9,a.y+Math.cos(q*4+a.a)*7,a.r,0,6.28);c.fill();});for(var a=0;a<p.length;a++)for(var b=a+1;b<p.length;b++){var dx=p[a].x-p[b].x,dy=p[a].y-p[b].y,d=Math.sqrt(dx*dx+dy*dy);if(d<100)edge(c,p[a],p[b],.045*(1-d/100));}}
+      if(s.mode==='fibers'){for(var f=0;f<18;f++){c.strokeStyle=f%6?'rgba(63,208,197,.075)':'rgba(232,178,74,.11)';c.beginPath();for(var x=0;x<=w;x+=22){var y=h*(f+1)/19+Math.sin(x*.012+f*.7+q*6)*20+(s.n%2?x*.035:-x*.035);x?c.lineTo(x,y):c.moveTo(x,y);}c.stroke();}}
+      if(s.mode==='pulse'){c.strokeStyle='rgba(63,208,197,.20)';c.lineWidth=1.5;c.beginPath();for(var z=0;z<=w;z+=7){var y=h*.62+Math.exp(-Math.pow((z/w-.5)*18,2))*Math.sin((z/w-.5)*65)*78+Math.sin(z*.018+q*7)*4;z?c.lineTo(z,y):c.moveTo(z,y);}c.stroke();}
+    }
+    var id;function loop(t){live.forEach(function(s){draw(s,t);});if(!still)id=requestAnimationFrame(loop);}if(still)scenes.forEach(function(s){draw(s,0);});else id=requestAnimationFrame(loop);document.addEventListener('visibilitychange',function(){if(document.hidden)cancelAnimationFrame(id);else if(!still)id=requestAnimationFrame(loop);});
+  })();
+
   var form = document.getElementById('contactForm');
   var success = document.getElementById('formSuccess');
   if(form){
     form.addEventListener('submit', function(e){
       e.preventDefault();
+      var data = new FormData(form);
+      var subject = 'Aortico — ' + (data.get('type') || 'Website inquiry');
+      var body = [
+        'Name: ' + (data.get('name') || ''),
+        'Email: ' + (data.get('email') || ''),
+        'Collaboration type: ' + (data.get('type') || ''),
+        '',
+        data.get('message') || ''
+      ].join('\n');
       success.classList.add('show');
-      form.querySelectorAll('input,textarea,select,button').forEach(function(el){ el.disabled = true; });
+      window.location.href = 'mailto:contact@aortico.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
     });
   }
 })();
