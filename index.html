@@ -274,13 +274,17 @@
   .hero-media-caption strong{color:var(--ink);font-weight:700;}
 
   /* Patient-to-patient comparison using the original, unmodified images. */
-  .mechanics-comparison{margin-top:44px;padding:30px 32px 32px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);box-shadow:var(--shadow);overflow:hidden;}
+  .mechanics-comparison{margin-top:44px;padding:0;background:transparent;border:0;border-radius:0;box-shadow:none;overflow:visible;}
   .comparison-message{margin:0 0 24px;color:var(--ink);font-size:1.08rem;font-weight:700;line-height:1.35;text-align:center;}
   .comparison-message span{color:var(--teal);}
   .patient-comparison{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;align-items:start;}
-  .patient-comparison img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:contain;border-radius:var(--radius-lg);}
+  .patient-frame{position:relative;display:flex;align-items:center;justify-content:center;min-width:0;padding:12px;background:var(--paper);border:2px solid #173A4A;border-radius:10px;overflow:hidden;}
+  .patient-comparison img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:contain;border-radius:8px;}
+  .phenotype-badge{position:absolute;left:7%;bottom:2.5%;display:block;width:43%;padding:7px 10px;border-radius:7px;color:var(--paper);font-family:var(--font-body);font-size:clamp(.58rem,.82vw,.78rem);font-weight:700;line-height:1.15;letter-spacing:.025em;text-align:center;text-transform:uppercase;}
+  .phenotype-badge.healthy{background:var(--risk-green);}
+  .phenotype-badge.dissection{background:var(--risk-red);}
   @media (max-width:760px){
-    .mechanics-comparison{padding:24px 18px;}
+    .mechanics-comparison{padding:0;}
     .comparison-message{text-align:left;margin-bottom:20px;}
     .patient-comparison{grid-template-columns:1fr;gap:20px;}
   }
@@ -289,10 +293,11 @@
   #why-aortico{overflow:visible;}
   .bvi-scroll-section{position:relative;height:auto;margin-top:56px;padding:0;--bvi-position:0%;}
   .bvi-sticky{position:relative;min-height:auto;display:block;padding:48px 0 24px;}
-  .bvi-layout{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1fr);gap:64px;align-items:center;}
+  .bvi-layout{display:block;}
+  .bvi-intro{max-width:650px;}
   .bvi-intro .body-copy+.body-copy{margin-top:12px;}
   .bvi-disclaimer{margin-top:20px;color:var(--ink-muted);font-family:var(--font-mono);font-size:.73rem;line-height:1.5;}
-  .bvi-spectrum-panel{padding:42px 38px 34px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);box-shadow:var(--shadow);}
+  .bvi-spectrum-panel{width:100%;margin-top:48px;padding:38px 34px 32px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);box-shadow:var(--shadow);}
   .bvi-spectrum-head{display:flex;justify-content:space-between;gap:20px;margin-bottom:54px;color:var(--ink-muted);font-family:var(--font-mono);font-size:.67rem;line-height:1.35;}
   .bvi-spectrum-head span:last-child{text-align:right;}
   .bvi-track-wrap{margin:0 42px;}
@@ -303,10 +308,10 @@
   .bvi-endpoints{display:flex;justify-content:space-between;margin-top:14px;color:var(--ink-muted);font-family:var(--font-mono);font-size:.72rem;}
   .bvi-dynamic{min-height:1.6em;margin:34px 0 0;color:var(--ink);font-size:.94rem;text-align:center;}
   .bvi-instruction{margin:8px 0 0;color:var(--ink-muted);font-family:var(--font-mono);font-size:.66rem;text-align:center;}
+  .timeline-card{display:none;}
   @media (max-width:900px){
-    .bvi-layout{grid-template-columns:1fr;gap:32px;}
     .bvi-sticky{padding:40px 0 18px;}
-    .bvi-spectrum-panel{padding:36px 24px 28px;}
+    .bvi-spectrum-panel{margin-top:36px;padding:36px 24px 28px;}
   }
   @media (max-width:520px){
     .bvi-sticky{padding-top:34px;}
@@ -541,8 +546,14 @@
       <div class="mechanics-comparison reveal" aria-label="Comparison of two patients with similar aortic diameter and different biomechanical vulnerability">
         <p class="comparison-message">Similar diameter. <span>Different biomechanical vulnerability.</span></p>
         <div class="patient-comparison">
-          <img src="./patient-a-transparent.png" alt="Patient A with a 46 mm ascending aortic diameter and BVI of 0.32" />
-          <img src="./patient-b-transparent.png" alt="Patient B with a 46 mm ascending aortic diameter and BVI of 0.78" />
+          <div class="patient-frame">
+            <img src="./patient-a-clean-v2-transparent.png" alt="Patient A with a 46 mm ascending aortic diameter and BVI of 0.32" />
+            <span class="phenotype-badge healthy">Healthy-like phenotype</span>
+          </div>
+          <div class="patient-frame">
+            <img src="./patient-b-anatomy-v4-clean-transparent.png" alt="Patient B with a 46 mm ascending aortic diameter and BVI of 0.78" />
+            <span class="phenotype-badge dissection">Dissection-like phenotype</span>
+          </div>
         </div>
       </div>
 
