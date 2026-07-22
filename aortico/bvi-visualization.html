@@ -424,6 +424,21 @@
     background: rgba(2, 8, 11, 0.92) !important;
   }
 
+
+  /* Iframe canvas fallback: prevents white even when transparency is unsupported */
+  html,
+  body {
+    background: #080d11 !important;
+    background-color: #080d11 !important;
+  }
+
+  .component,
+  .viewer,
+  .controls {
+    background: transparent !important;
+    background-color: transparent !important;
+  }
+
 </style>
 </head>
 <body>
@@ -786,8 +801,8 @@
   const requestedMode = new URLSearchParams(window.location.search).get("mode");
   const isEditorMode = requestedMode === "editor";
   document.body.classList.add(isEditorMode ? "editor-mode" : "production-mode");
-  document.documentElement.style.background = "transparent";
-  document.body.style.background = "transparent";
+  document.documentElement.style.background = "#080d11";
+  document.body.style.background = "#080d11";
 
   function createSvg(tag, attrs = {}) {
     const el = document.createElementNS(NS, tag);
