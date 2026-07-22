@@ -278,7 +278,8 @@
   .comparison-message{margin:0 0 24px;color:var(--ink);font-size:1.08rem;font-weight:700;line-height:1.35;text-align:center;}
   .comparison-message span{color:var(--teal);}
   .patient-comparison{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;align-items:start;}
-  .patient-frame{position:relative;min-width:0;aspect-ratio:850/686;background:var(--paper);border:6px solid #79B9BB;border-radius:12%;overflow:hidden;container-type:inline-size;}
+  .patient-frame{position:relative;min-width:0;aspect-ratio:1873/1511;background:transparent;border:0;border-radius:0;overflow:hidden;}
+  .patient-panel-image{display:block;width:100%;height:100%;object-fit:contain;}
   .patient-aorta{position:absolute;right:3%;top:6%;display:block;width:47%;height:90%;object-fit:contain;}
   .patient-panel-title{position:absolute;left:7%;top:7%;margin:0;color:var(--ink);font-size:6.4cqw;font-weight:400;line-height:1;}
   .diameter-card{position:absolute;left:19%;top:28%;width:24%;padding:2.2% 1.5%;border:2px solid #79B9BB;border-radius:12px;color:var(--ink);text-align:center;}
@@ -575,21 +576,11 @@
       <div class="mechanics-comparison reveal" aria-label="Comparison of two patients with similar aortic diameter and different biomechanical vulnerability">
         <p class="comparison-message">Similar diameter. <span>Different biomechanical vulnerability.</span></p>
         <div class="patient-comparison">
-          <div class="patient-frame patient-a" role="img" aria-label="Patient A with a 46 mm ascending aortic diameter, BVI of 0.32, and low risk label">
-            <h3 class="patient-panel-title">Patient A</h3>
-            <div class="diameter-card"><span class="diameter-label">Ascending diameter</span><span class="diameter-value">46 <small>mm</small></span></div>
-            <div class="patient-bvi-box"><span>BVI</span><span class="divider"></span><strong>0.32</strong><small>/ 1.00</small></div>
-            <span class="patient-bvi-caption">Biomechanical Vulnerability Index</span>
-            <span class="risk-label low">Low Risk</span>
-            <img class="patient-aorta" src="./patient-a-aorta-only.png" alt="" />
+          <div class="patient-frame patient-a">
+            <img class="patient-panel-image" src="./fig1-farshad.png" alt="Patient A with a 46 mm ascending aortic diameter, BVI of 0.32, and low risk label" />
           </div>
-          <div class="patient-frame patient-b" role="img" aria-label="Patient B with a 46 mm ascending aortic diameter, BVI of 0.78, and high risk label">
-            <h3 class="patient-panel-title">Patient B</h3>
-            <div class="diameter-card"><span class="diameter-label">Ascending diameter</span><span class="diameter-value">46 <small>mm</small></span></div>
-            <div class="patient-bvi-box"><span>BVI</span><span class="divider"></span><strong>0.78</strong><small>/ 1.00</small></div>
-            <span class="patient-bvi-caption">Biomechanical Vulnerability Index</span>
-            <span class="risk-label high">High Risk</span>
-            <img class="patient-aorta" src="./patient-b-aorta-only.png" alt="" />
+          <div class="patient-frame patient-b">
+            <img class="patient-panel-image" src="./fig2-farshad.png" alt="Patient B with a 46 mm ascending aortic diameter, BVI of 0.78, and high risk label" />
           </div>
         </div>
       </div>
