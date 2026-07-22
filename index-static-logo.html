@@ -362,11 +362,11 @@
   .bvi-intro{max-width:650px;}
   .bvi-intro .body-copy+.body-copy{margin-top:12px;}
   .bvi-disclaimer{margin-top:20px;color:var(--ink-muted);font-family:var(--font-mono);font-size:.73rem;line-height:1.5;}
-  .bvi-spectrum-panel{width:100%;margin-top:48px;padding:38px 34px 32px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);box-shadow:var(--shadow);}
-  .bvi-spectrum-head{display:flex;justify-content:space-between;gap:20px;margin-bottom:54px;color:var(--ink-muted);font-family:var(--font-mono);font-size:.67rem;line-height:1.35;}
+  .bvi-spectrum-panel{width:min(100%,1050px);margin:48px auto 0;padding:28px 34px 22px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);box-shadow:var(--shadow);}
+  .bvi-spectrum-head{display:flex;justify-content:space-between;gap:20px;margin-bottom:40px;color:var(--ink-muted);font-family:var(--font-mono);font-size:.67rem;line-height:1.35;}
   .bvi-spectrum-head span:last-child{text-align:right;}
   .bvi-track-wrap{margin:0 42px;}
-  .bvi-progression{height:clamp(180px,18vw,220px);margin:30px 42px 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:center;overflow:visible;}
+  .bvi-progression{height:clamp(130px,14vw,160px);margin:20px 42px 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:center;overflow:visible;}
   .bvi-progression::before{content:none;}
   .bvi-progression img{display:block;width:clamp(125px,14vw,180px);height:auto;max-width:100%;object-fit:contain;background:transparent;}
   .bvi-progression img:first-child{justify-self:start;}
@@ -377,16 +377,16 @@
   .bvi-marker{position:absolute;left:var(--bvi-position);top:50%;width:22px;height:22px;border:3px solid var(--surface);border-radius:50%;background:var(--bvi-marker-color,#31c7c1);box-shadow:0 0 0 2px rgba(241,246,245,.7);transform:translate(-50%,-50%);will-change:left;}
   .bvi-value{position:absolute;left:50%;bottom:30px;min-width:78px;padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:var(--deep);color:var(--deep-ink);font-family:var(--font-mono);font-size:.76rem;text-align:center;transform:translateX(-50%);white-space:nowrap;}
   .bvi-endpoints{display:flex;justify-content:space-between;margin-top:14px;color:var(--ink-muted);font-family:var(--font-mono);font-size:.72rem;}
-  .bvi-dynamic{min-height:1.6em;margin:34px 0 0;color:var(--ink);font-size:.94rem;text-align:center;}
+  .bvi-dynamic{min-height:1.6em;margin:18px 0 0;color:var(--ink);font-size:.94rem;text-align:center;}
   .bvi-instruction{margin:8px 0 0;color:var(--ink-muted);font-family:var(--font-mono);font-size:.66rem;text-align:center;}
   .timeline-card{display:none;}
   @media (max-width:900px){
     .bvi-sticky{padding:40px 0 18px;}
-    .bvi-spectrum-panel{margin-top:36px;padding:36px 24px 28px;}
+    .bvi-spectrum-panel{margin-top:36px;padding:26px 24px 22px;}
   }
   @media (max-width:520px){
     .bvi-sticky{padding-top:34px;}
-    .bvi-spectrum-head{margin-bottom:50px;font-size:.6rem;}
+    .bvi-spectrum-head{margin-bottom:36px;font-size:.6rem;}
     .bvi-track-wrap{margin:0 38px;}
     .bvi-progression{height:clamp(120px,31vw,160px);margin:24px 18px 0;}
     .bvi-progression img{width:clamp(82px,25vw,120px);height:auto;max-width:100%;}
@@ -408,6 +408,8 @@
   .media-card video{width:100%;height:auto;display:block;background:var(--deep);}
   .media-card .cap{padding:16px 20px;font-size:.86rem;color:var(--ink-muted);}
   .media-card .cap strong{color:var(--ink);font-weight:700;}
+  #how-it-works .media-card .cap,
+  #research .media-card .cap{text-align:center;}
   .workflow-video-viewer{width:min(100%,780px);margin-inline:auto;}
   .workflow-video-viewer video{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:contain;background:var(--deep);}
   #howSoftwareDemo,#how-it-works .proof-media .media-card:nth-child(2){display:none;}
@@ -476,8 +478,6 @@
   .step h3{margin-bottom:8px;}
   .step p{color:var(--ink-muted);font-size:.93rem;}
   .step-connector{display:none;}
-  .how-footline{margin-top:44px;text-align:center;font-family:var(--font-display);font-weight:700;font-size:1.15rem;color:var(--ink);}
-  .how-footline span{color:var(--teal);}
 
   /* Evidence rings */
   .ring-tile{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-md);padding:28px 24px;text-align:center;}
@@ -504,7 +504,7 @@
   #research .research-video-grid{display:grid;grid-template-columns:repeat(3,minmax(0,360px));justify-content:center;gap:clamp(20px,2.5vw,30px);}
   #research .research-video-card{width:100%;max-width:360px;margin:0;overflow:hidden;border:1px solid var(--line);border-radius:var(--radius-md);background:var(--surface);}
   #research .research-video-card video{display:block;width:100%;aspect-ratio:4/3;object-fit:contain;background:var(--deep);border-radius:10px 10px 0 0;}
-  #research .research-video-card figcaption{padding:15px 17px;color:var(--ink);font-family:var(--font-display);font-size:.9rem;font-weight:700;}
+  #research .research-video-card figcaption{padding:15px 17px;color:var(--ink);font-family:var(--font-display);font-size:.9rem;font-weight:700;text-align:center;}
   @media(max-width:980px){#research .research-video-grid{grid-template-columns:repeat(2,minmax(0,360px));}#research .research-video-card:nth-child(3){grid-column:1/-1;justify-self:center;}}
   @media(max-width:680px){#research .research-evidence-grid,#research .research-video-grid{grid-template-columns:1fr;}#research .research-video-card{max-width:360px;justify-self:center;}#research .research-video-card:nth-child(3){grid-column:auto;}}
 
@@ -753,7 +753,6 @@
         </div>
       </div>
 
-      <div class="how-footline">Measured from imaging. <span>Grounded in tissue mechanics.</span></div>
 
       <div class="media-card how-software-demo reveal" id="howSoftwareDemo">
         <div class="cap"><strong>Patient-specific aortic analysis.</strong> Explore the complete Aortico software workflow from medical imaging to geometric measurements.</div>
