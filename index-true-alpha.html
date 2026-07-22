@@ -539,14 +539,24 @@
   .mark.yes{background:var(--teal);color:#fff;}
 
   /* Team */
-  .team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:44px;}
-  @media (max-width:860px){.team-grid{grid-template-columns:repeat(2,1fr);}}
-  @media (max-width:560px){.team-grid{grid-template-columns:1fr;}}
-  .team-card{text-align:left;}
-  .avatar{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700;font-size:1.1rem;color:#fff;margin-bottom:16px;}
-  .team-card h3{font-size:1.02rem;margin-bottom:2px;}
-  .team-card .role{font-size:.82rem;color:var(--teal);font-weight:700;margin-bottom:10px;}
-  .team-card .discipline{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted);}
+  .team-constellation{width:min(100%,1050px);margin:52px auto 0;display:flex;flex-direction:column;align-items:center;gap:clamp(64px,7vw,96px);}
+  .team-row{position:relative;width:min(100%,780px);display:grid;grid-template-columns:repeat(2,minmax(0,280px));justify-content:center;align-items:start;column-gap:clamp(100px,12vw,180px);}
+  .team-row::before{content:"";position:absolute;left:50%;top:88px;width:min(19vw,150px);height:1px;background:rgba(94,215,207,.16);transform:translateX(-50%);}
+  .team-row::after{content:"";position:absolute;left:50%;top:85px;width:7px;height:7px;border:1px solid rgba(94,215,207,.38);border-radius:50%;background:var(--deep);transform:translateX(-50%);}
+  .team-row-label{grid-column:1/-1;justify-self:center;margin-bottom:22px;color:rgba(118,211,205,.72);font-family:var(--font-mono);font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;}
+  .team-person,.team-constellation .team-card{display:flex;flex-direction:column;align-items:center;text-align:center;min-width:0;}
+  .team-constellation .team-card.card{min-height:0;padding:0;background:transparent;border:0;border-radius:0;box-shadow:none;}
+  .team-person__photo,.team-person__initials,.team-constellation .team-member-photo,.team-constellation .avatar{width:clamp(112px,9vw,138px);height:clamp(112px,9vw,138px);flex:none;border:2px solid rgba(94,215,207,.72);border-radius:50%;display:flex;align-items:center;justify-content:center;object-fit:cover;object-position:center top;box-shadow:0 0 0 6px rgba(94,215,207,.06),0 12px 30px rgba(0,0,0,.24);margin:0;}
+  .team-person__initials,.team-constellation .avatar{background:rgba(94,215,207,.09)!important;color:var(--ink);font-family:var(--font-display);font-size:1.5rem;font-weight:700;}
+  .team-person__name,.team-constellation .team-card h3{margin:20px 0 0;font-size:clamp(19px,1.5vw,23px);font-weight:500;line-height:1.25;}
+  .team-person__name a,.team-constellation .team-card h3 a{color:var(--ink);text-decoration:none;}
+  .team-person__name a:hover,.team-person__name a:focus-visible,.team-constellation .team-card h3 a:hover,.team-constellation .team-card h3 a:focus-visible{color:var(--teal);}
+  .team-person__role,.team-constellation .team-card .role{margin:7px 0 0;color:var(--teal);font-size:14px;font-weight:700;}
+  .team-person__description,.team-constellation .team-card .discipline{margin-top:10px;color:var(--ink-muted);font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;}
+  .team-profile-link,.team-constellation .team-profile{width:auto;height:auto;margin-top:15px;min-height:36px;padding:7px 12px;display:inline-flex;align-items:center;justify-content:center;gap:7px;border:1px solid rgba(94,215,207,.34);border-radius:999px;color:var(--teal);background:rgba(94,215,207,.035);font-size:12px;font-weight:600;text-decoration:none;}
+  .team-profile-link svg,.team-constellation .team-profile svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;}
+  .team-profile-link:hover,.team-profile-link:focus-visible,.team-constellation .team-profile:hover,.team-constellation .team-profile:focus-visible{border-color:rgba(94,215,207,.78);background:rgba(94,215,207,.09);}
+  @media (max-width:680px){.team-constellation{gap:64px;}.team-row{grid-template-columns:minmax(0,320px);row-gap:56px;}.team-row-label{grid-column:1;margin-bottom:0;}.team-row::before,.team-row::after{display:none;}}
 
   /* Contact */
   .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;}
@@ -914,42 +924,57 @@
         <p class="body-copy">The problem sits between three disciplines. So does the team.</p>
       </div>
 
-      <div class="team-grid">
-        <div class="team-card card reveal">
-          <div class="avatar" style="background:var(--teal);">DE</div>
-          <h3>Daniella Eliathamby, PhD</h3>
-          <div class="role">CEO</div>
-          <div class="discipline">Biomechanics Scientist</div>
-        </div>
-        <div class="team-card card reveal">
-          <div class="avatar" style="background:var(--gold);">CS</div>
-          <h3>Craig Simmons, PhD</h3>
-          <div class="role">Founder</div>
-          <div class="discipline">Mechanics Professor</div>
-        </div>
-        <div class="team-card card reveal">
-          <div class="avatar" style="background:var(--teal-logo);">JC</div>
-          <h3>Jennifer Chung, MD</h3>
+      <div class="team-constellation">
+        <div class="team-row">
+          <div class="team-row-label">Founders</div>
+        <div class="team-card reveal">
+          <img class="team-member-photo" src="./personnel/Jennifer chung.png" width="84" height="84" alt="Jennifer Chung">
+          <h3><a href="https://www.researchgate.net/profile/Jennifer-Chung-4" target="_blank" rel="noopener noreferrer">Jennifer Chung, MD</a></h3>
           <div class="role">Founder</div>
           <div class="discipline">Aortic Surgeon</div>
+          <a class="team-profile" href="https://www.researchgate.net/profile/Jennifer-Chung-4" target="_blank" rel="noopener noreferrer" aria-label="View Jennifer Chung on ResearchGate"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 5h5v5M19 5l-8 8M17 13v5H6V7h5"/></svg>ResearchGate</a>
         </div>
-        <div class="team-card card reveal">
-          <div class="avatar" style="background:var(--ink);">FT</div>
-          <h3>Farshad Tajeddinisarvestani, PhD</h3>
+        <div class="team-card reveal">
+          <img class="team-member-photo" src="./personnel/Craig Simmons.png" width="84" height="84" alt="Craig Simmons">
+          <h3><a href="https://www.linkedin.com/in/craigsimmons11/" target="_blank" rel="noopener noreferrer">Craig Simmons, PhD</a></h3>
+          <div class="role">Co-Founder</div>
+          <div class="discipline">Mechanics Professor</div>
+          <a class="team-profile" href="https://www.linkedin.com/in/craigsimmons11/" target="_blank" rel="noopener noreferrer" aria-label="View Craig Simmons on LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 9.5v8M6.5 6.5h.01M10.5 17.5v-8M10.5 13c.7-2.1 5-2.4 5 1v3.5M15.5 13v4.5"/></svg>LinkedIn</a>
+        </div>
+        </div>
+        <div class="team-row">
+          <div class="team-row-label">Executive Leadership</div>
+        <div class="team-card reveal">
+          <img class="team-member-photo" src="./personnel/Daniella.png" width="84" height="84" alt="Daniella Eliathamby">
+          <h3><a href="https://www.linkedin.com/in/daniella-eliathamby-94522b106/" target="_blank" rel="noopener noreferrer">Daniella Eliathamby, PhD</a></h3>
+          <div class="role">CEO</div>
+          <div class="discipline">Biomechanics Scientist</div>
+          <a class="team-profile" href="https://www.linkedin.com/in/daniella-eliathamby-94522b106/" target="_blank" rel="noopener noreferrer" aria-label="View Daniella Eliathamby on LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 9.5v8M6.5 6.5h.01M10.5 17.5v-8M10.5 13c.7-2.1 5-2.4 5 1v3.5M15.5 13v4.5"/></svg>LinkedIn</a>
+        </div>
+        <div class="team-card reveal">
+          <img class="team-member-photo" src="./personnel/Farshad.png" width="84" height="84" alt="Farshad Tajeddini">
+          <h3><a href="https://www.linkedin.com/in/farshad-tajeddini-1766b6148/" target="_blank" rel="noopener noreferrer">Farshad Tajeddini, PhD</a></h3>
           <div class="role">CTO</div>
           <div class="discipline">AI/ML Scientist</div>
+          <a class="team-profile" href="https://www.linkedin.com/in/farshad-tajeddini-1766b6148/" target="_blank" rel="noopener noreferrer" aria-label="View Farshad Tajeddini on LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 9.5v8M6.5 6.5h.01M10.5 17.5v-8M10.5 13c.7-2.1 5-2.4 5 1v3.5M15.5 13v4.5"/></svg>LinkedIn</a>
         </div>
-        <div class="team-card card reveal">
-          <div class="avatar" style="background:var(--teal);">HS</div>
-          <h3>Hanfei Su</h3>
-          <div class="role">Team</div>
-          <div class="discipline">AI/ML Scientist</div>
         </div>
-        <div class="team-card card reveal">
+        <div class="team-row">
+          <div class="team-row-label">Applied Machine Learning</div>
+        <div class="team-card reveal">
+          <img class="team-member-photo" src="./personnel/Hanfei Su.png" width="84" height="84" alt="Hanfei Su">
+          <h3><a href="https://www.linkedin.com/in/hanfeisu/" target="_blank" rel="noopener noreferrer">Hanfei Su, MSc</a></h3>
+          <div class="role">ML Specialist</div>
+          <div class="discipline">Applied Machine Learning</div>
+          <a class="team-profile" href="https://www.linkedin.com/in/hanfeisu/" target="_blank" rel="noopener noreferrer" aria-label="View Hanfei Su on LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 9.5v8M6.5 6.5h.01M10.5 17.5v-8M10.5 13c.7-2.1 5-2.4 5 1v3.5M15.5 13v4.5"/></svg>LinkedIn</a>
+        </div>
+        <div class="team-card reveal">
           <div class="avatar" style="background:var(--gold);">DH</div>
-          <h3>David Holt, MD</h3>
-          <div class="role">Team</div>
-          <div class="discipline">AI/ML Scientist</div>
+          <h3><a href="https://www.linkedin.com/in/david--holt/" target="_blank" rel="noopener noreferrer">David Holt, MD</a></h3>
+          <div class="role">Applied ML Intern</div>
+          <div class="discipline">Applied Machine Learning</div>
+          <a class="team-profile" href="https://www.linkedin.com/in/david--holt/" target="_blank" rel="noopener noreferrer" aria-label="View David Holt on LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 9.5v8M6.5 6.5h.01M10.5 17.5v-8M10.5 13c.7-2.1 5-2.4 5 1v3.5M15.5 13v4.5"/></svg>LinkedIn</a>
+        </div>
         </div>
       </div>
     </div>
