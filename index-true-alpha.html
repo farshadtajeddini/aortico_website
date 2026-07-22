@@ -457,18 +457,16 @@
   .cite a{text-decoration-color:var(--teal);text-underline-offset:3px;}
 
   /* How it works */
-  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;position:relative;margin-top:44px;}
-  @media (max-width:860px){.steps{grid-template-columns:1fr;gap:28px;}}
-  .step{position:relative;padding:0 22px;}
-  .step:first-child{padding-left:0;}
-  .step:last-child{padding-right:0;}
+  .steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(28px,3vw,48px);position:relative;margin-top:44px;}
+  @media (max-width:1050px){.steps{grid-template-columns:repeat(2,minmax(0,1fr));}}
+  @media (max-width:650px){.steps{grid-template-columns:1fr;}}
+  .step{position:relative;min-width:0;padding:0;}
   .step-num{font-family:var(--font-mono);font-size:.72rem;color:var(--ink-muted);letter-spacing:.1em;}
   .step-icon{width:52px;height:52px;border-radius:14px;background:var(--teal-tint);color:var(--teal);display:flex;align-items:center;justify-content:center;margin:14px 0 18px;}
-  .step-icon svg{width:26px;height:26px;}
+  .step-icon svg{width:28px;height:28px;}
   .step h3{margin-bottom:8px;}
   .step p{color:var(--ink-muted);font-size:.93rem;}
-  .step-connector{position:absolute;top:26px;left:calc(-22px);width:44px;height:2px;background:var(--line-strong);}
-  @media (max-width:860px){.step-connector{display:none;}}
+  .step-connector{display:none;}
   .how-footline{margin-top:44px;text-align:center;font-family:var(--font-display);font-weight:700;font-size:1.15rem;color:var(--ink);}
   .how-footline span{color:var(--teal);}
 
@@ -690,40 +688,48 @@
     <div class="wrap">
       <div class="section-head center">
         <span class="kicker">How it works</span>
-        <h2>One scan. Three signal layers. One interpretable index.</h2>
-        <p class="body-copy">Aortico turns cardiovascular MRI into a structured view of anatomy, motion, and flow for patient-specific research.</p>
+        <h2>One scan. Four steps. One patient-specific biomechanical profile.</h2>
+        <p class="body-copy">Aortico transforms cardiovascular MRI into measurements of anatomy, wall deformability, and blood-flow dynamics, then summarizes them in an interpretable research report.</p>
       </div>
 
       <div class="steps">
         <div class="step reveal">
           <div class="step-num">01</div>
           <div class="step-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 17h7M17.5 14v7"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 21c1-4 1-7 .2-10C7.4 7.6 9 4.5 12 4.2c3.1-.3 5.5 2.1 5.5 5.2 0 2.2-.8 4.2-1.2 6.3-.3 1.7-.4 3.5-.4 5.3"/><path d="M11.2 4.3 10.4 1.8M13.7 4.4l.5-2.8M16 5.8l2-2"/><path d="M7.8 9.3h2.1M8.5 13.3h2.1M8.6 17.3h2.1"/></svg>
           </div>
           <h3>Anatomy</h3>
-          <p>Reconstruct the thoracic aorta and quantify its geometry across clinically relevant segments.</p>
+          <p>Reconstruct the thoracic aorta and quantify diameter, length, curvature, and segment-specific geometry.</p>
         </div>
         <div class="step reveal">
           <div class="step-connector"></div>
           <div class="step-num">02</div>
           <div class="step-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h3l2-7 4 14 3-11 2 4h6"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="8"/><path d="M12 2V0M12 24v-2M2 12H0M24 12h-2"/><path d="m10.5 1.5 1.5-1.5 1.5 1.5M10.5 22.5 12 24l1.5-1.5M1.5 10.5 0 12l1.5 1.5M22.5 10.5 24 12l-1.5 1.5"/></svg>
           </div>
-          <h3>Motion + flow</h3>
-          <p>Measure area change and blood-flow behavior across the cardiac cycle.</p>
+          <h3>Deformability</h3>
+          <p>Track cross-sectional area throughout the cardiac cycle to estimate strain, distensibility, and compliance.</p>
         </div>
         <div class="step reveal">
           <div class="step-connector"></div>
           <div class="step-num">03</div>
           <div class="step-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="0.6" fill="currentColor"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20c0-5 1-8 4-11s6-4 11-4"/><path d="m15.5 2.5 3.5 2.5-3.5 2.5M7.5 8.5l2.5.5-.5-2.5M4 13.5l2 1.5-2 1.5"/><path d="M3 22c2-1 2-3 4-3s2 2 4 2 2-3 4-3 2 2 4 2"/></svg>
           </div>
-          <h3>Vulnerability index</h3>
-          <p>Combine 18 imaging-derived features into the investigational Biomechanical Vulnerability Index.</p>
+          <h3>Flow &amp; pulse dynamics</h3>
+          <p>Characterize blood-flow behavior and pulse-wave propagation throughout the thoracic aorta.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step-num">04</div>
+          <div class="step-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 2h10l4 4v16H5z"/><path d="M15 2v4h4"/><path d="M9 13c.5-2 1.2-3.5 2.5-3.5S14 11 14 13c0 1.5-.5 3-.7 4.5"/><path d="M8 19h8M8 16h2"/><path d="M8 7h4M15.5 9.5v3M14 11h3"/></svg>
+          </div>
+          <h3>Research report</h3>
+          <p>Combine imaging-derived markers into a patient-specific report containing the biomechanical profile, BVI, and visual risk map.</p>
         </div>
       </div>
 
-      <div class="how-footline">Captured by imaging. <span>Validated on tissue.</span></div>
+      <div class="how-footline">Measured from imaging. <span>Grounded in tissue mechanics.</span></div>
 
       <div class="media-card how-software-demo reveal" id="howSoftwareDemo">
         <div class="cap"><strong>Patient-specific aortic analysis.</strong> Explore the complete Aortico software workflow from medical imaging to geometric measurements.</div>
